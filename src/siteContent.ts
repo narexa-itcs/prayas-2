@@ -19,7 +19,9 @@ export const site = {
     w4: "/assets/4.jpg",
     w5: "/assets/5.jpg",
     w6: "/assets/6.jpg",
-    w7: "/assets/7.jpg"
+    w7: "/assets/7.jpg",
+    overviewPoster: "/assets/prayas-overview-poster.jpeg",
+    workPlanPoster: "/assets/prayas-work-plan-poster.jpeg",
   },
 };
 

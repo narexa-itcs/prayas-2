@@ -1,7 +1,13 @@
 import { FormEvent, useEffect, useMemo, useState } from "react";
-import { achievements, donationUses, futurePlans, site, stats } from "./siteContent";
+import { achievements, donationUses, futurePlans, site } from "./siteContent";
 
 type Page = "home" | "about" | "donate" | "contact";
+type WorkHighlight = {
+  id: string;
+  title: string;
+  detail: string;
+  images: string[];
+};
 
 const pages: { key: Page; label: string }[] = [
   { key: "home", label: "Home" },
@@ -10,41 +16,19 @@ const pages: { key: Page; label: string }[] = [
   { key: "contact", label: "Contact us" },
 ];
 
-const slideImages = [
+const fallbackHighlights: WorkHighlight[] = [
   {
-    src: site.assets.w1,
-    title: "अब तक हमारे प्रमुख कार्य",
+    id: "blood-donation",
+    title: "रक्तदान सेवा",
+    detail: "28 सफल स्वैच्छिक रक्तदान शिविरों के माध्यम से अब तक 1,460 यूनिट रक्त जरूरतमंद मरीजों तक पहुंचाया गया।",
+    images: [site.assets.w1, site.assets.w2, site.assets.w3, site.assets.w4],
   },
   {
-    src: site.assets.w1,
-    title: "अब तक हमारे प्रमुख कार्य",
+    id: "community-support",
+    title: "भोजन, वस्त्र और सहायता",
+    detail: "वस्त्र-वितरण, कोरोना काल की भोजन सेवा और जरूरतमंद परिवारों के लिए आर्थिक सहयोग संस्था के प्रमुख सेवा कार्य रहे हैं।",
+    images: [site.assets.w4, site.assets.w5, site.assets.w6, site.assets.w7],
   },
-  {
-    src: site.assets.w2,
-    title: "अब तक हमारे प्रमुख कार्य",
-  },
-
-  {
-    src: site.assets.w3,
-    title: "अब तक हमारे प्रमुख कार्य",
-  },
-  {
-    src: site.assets.w4,
-    title: "अब तक हमारे प्रमुख कार्य",
-  },
-  {
-    src: site.assets.w5,
-    title: "अब तक हमारे प्रमुख कार्य",
-  },
-  {
-    src: site.assets.w6,
-    title: "अब तक हमारे प्रमुख कार्य",
-  },
-   {
-    src: site.assets.w7,
-    title: "अब तक हमारे प्रमुख कार्य",
-  }
-  
 ];
 
 function getPageFromHash(): Page {
@@ -121,34 +105,28 @@ function Header({
 
 function HomePage() {
   return (
-    <div className="page-shell">
-      
-      <section className="landing-grid" aria-label="मुख्य जानकारी">
-        <div className="feature-panel">
-          <ImageSlideshow />
+    <div className="page-shell home-shell">
+      <section className="work-showcase" aria-labelledby="work-title">
+        <div className="section-heading">
+          <p className="eyebrow">अब तक का कार्य</p>
+          <h1 id="work-title">समर्पण से बनी सेवा की चमक</h1>
         </div>
-        <aside className="future-panel" aria-labelledby="future-title">
-          <p className="eyebrow">आगे की योजनाएं</p>
-          <h2 id="future-title">सेवा को और व्यापक बनाने की दिशा</h2>
-          <div className="plan-list">
-            {futurePlans.map((plan) => (
-              <article className="plan-item" key={plan.title}>
-                <h3>{plan.title}</h3>
-                <p>{plan.text}</p>
-              </article>
-            ))}
-          </div>
-        </aside>
+        <ImageSlideshow />
       </section>
 
-      <section className="work-section" aria-labelledby="work-title">
-        <p className="eyebrow">अब तक का कार्य</p>
-        <h2 id="work-title">समर्पण से बने भरोसे की कुछ झलकियां</h2>
-        <ul className="achievement-list">
-          {achievements.map((item) => (
-            <li key={item}>{item}</li>
+      <section className="future-work-section" aria-labelledby="future-title">
+        <div className="section-heading compact">
+          <p className="eyebrow">आगे की योजनाएं</p>
+          <h2 id="future-title">सेवा को और व्यापक बनाने की दिशा</h2>
+        </div>
+        <div className="plan-list">
+          {futurePlans.map((plan) => (
+            <article className="plan-item" key={plan.title}>
+              <h3>{plan.title}</h3>
+              <p>{plan.text}</p>
+            </article>
           ))}
-        </ul>
+        </div>
       </section>
     </div>
   );
@@ -156,32 +134,68 @@ function HomePage() {
 
 function ImageSlideshow() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [highlights, setHighlights] = useState<WorkHighlight[]>(fallbackHighlights);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    fetch("/data/work-highlights.json")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Unable to load work highlights");
+        }
+
+        return response.json() as Promise<WorkHighlight[]>;
+      })
+      .then((records) => {
+        if (!cancelled && Array.isArray(records) && records.length > 0) {
+          setHighlights(records);
+          setActiveIndex(0);
+        }
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setHighlights(fallbackHighlights);
+        }
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   useEffect(() => {
     const timer = window.setInterval(() => {
-      setActiveIndex((index) => (index + 1) % slideImages.length);
+      setActiveIndex((index) => (index + 1) % highlights.length);
     }, 4500);
 
     return () => window.clearInterval(timer);
-  }, []);
+  }, [highlights.length]);
 
-  const activeSlide = slideImages[activeIndex];
+  const activeSlide = highlights[activeIndex] ?? highlights[0];
 
   return (
-    <div className="slideshow" aria-label="NGO work slideshow">
-      <div className="slide-frame">
-        <img src={activeSlide.src} alt={activeSlide.title} />
-        <div className="slide-caption">{activeSlide.title}</div>
+    <div className="slideshow" aria-label="NGO work slideshow" aria-live="polite">
+      <div className="slide-copy">
+        <h2>{activeSlide.title}</h2>
+        <p>{activeSlide.detail}</p>
+      </div>
+      <div className="slide-gallery">
+        {activeSlide.images.slice(0, 4).map((image, index) => (
+          <img key={`${activeSlide.id}-${image}`} src={image} alt={`${activeSlide.title} ${index + 1}`} />
+        ))}
       </div>
       <div className="slide-controls" aria-label="Slideshow controls">
-        {slideImages.map((slide, index) => (
+        {highlights.map((slide, index) => (
           <button
-            key={slide.src}
+            key={slide.id}
             className={activeIndex === index ? "active" : ""}
             type="button"
             onClick={() => setActiveIndex(index)}
-            aria-label={`Show slide ${index + 1}: ${slide.title}`}
-          />
+            aria-label={`Show work record ${index + 1}: ${slide.title}`}
+          >
+            <span>{index + 1}</span>
+          </button>
         ))}
       </div>
     </div>
