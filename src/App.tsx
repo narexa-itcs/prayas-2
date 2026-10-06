@@ -60,7 +60,7 @@ function App() {
         {page === "donate" && <DonatePage />}
         {page === "contact" && <ContactPage />}
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }
@@ -80,7 +80,7 @@ function Header({
         <img src={site.assets.logo} alt="प्रयास सहयोग सेवा समिति लोगो" />
         <span>
           <strong>
-            {site.name} {site.registration}
+            {site.name} <small>{site.registration}</small>
           </strong>
           <small>{site.tagline}</small>
         </span>
@@ -112,8 +112,7 @@ function HomePage() {
 
       <section className="future-work-section" aria-labelledby="future-title">
         <div className="section-heading compact">
-          <p className="eyebrow">आगे की योजनाएं</p>
-          <h2 id="future-title">सेवा को और व्यापक बनाने की दिशा</h2>
+          <p className="eyebrow">आगे की अन्य योजनाएं</p>
         </div>
         <div className="plan-list">
           {futurePlans.map((plan) => (
@@ -181,7 +180,7 @@ function ImageSlideshow() {
           <img key={`${activeSlide.id}-${image}`} src={image} alt={`${activeSlide.title} ${index + 1}`} />
         ))}
       </div>
-      <div className="slide-controls" aria-label="Slideshow controls">
+      {/* <div className="slide-controls" aria-label="Slideshow controls">
         {highlights.map((slide, index) => (
           <button
             key={slide.id}
@@ -193,7 +192,7 @@ function ImageSlideshow() {
             <span>{index + 1}</span>
           </button>
         ))}
-      </div>
+      </div> */}
     </div>
   );
 }
