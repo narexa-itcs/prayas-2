@@ -107,10 +107,6 @@ function HomePage() {
   return (
     <div className="page-shell home-shell">
       <section className="work-showcase" aria-labelledby="work-title">
-        <div className="section-heading">
-          <p className="eyebrow">अब तक का कार्य</p>
-          <h1 id="work-title">समर्पण से बनी सेवा की चमक</h1>
-        </div>
         <ImageSlideshow />
       </section>
 

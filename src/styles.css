@@ -9,14 +9,14 @@
   --metal: #c9d3e7;
   --gold: #ffc55a;
   --success: #48d6c8;
-  --panel: rgba(12, 17, 32, 0.82);
-  --panel-strong: rgba(18, 25, 45, 0.94);
+  --panel: rgba(24, 32, 50, 0.82);
+  --panel-strong: rgba(28, 39, 62, 0.94);
   --line: rgba(180, 203, 238, 0.26);
   --shadow: 0 20px 60px rgba(0, 0, 0, 0.36);
   --glow-blue: 0 0 32px rgba(47, 123, 255, 0.38);
   --glow-red: 0 0 32px rgba(255, 48, 77, 0.34);
   color: var(--ink);
-  background: #070a12;
+  background: #101827;
   font-family:
     "Nirmala UI",
     "Mangal",
@@ -41,7 +41,7 @@ body {
   background:
     linear-gradient(120deg, rgba(255, 48, 77, 0.16), transparent 32%),
     linear-gradient(245deg, rgba(47, 123, 255, 0.24), transparent 42%),
-    linear-gradient(180deg, #090d18 0%, #111827 48%, #070a12 100%);
+    linear-gradient(180deg, #121c2d 0%, #1a2639 48%, #101827 100%);
 }
 
 body::before {
@@ -92,7 +92,7 @@ main {
   justify-content: space-between;
   gap: 1rem;
   padding: 0.68rem clamp(1rem, 4vw, 3rem);
-  background: rgba(8, 12, 23, 0.9);
+  background: rgba(20, 30, 47, 0.9);
   border-bottom: 1px solid var(--line);
   backdrop-filter: blur(18px);
   box-shadow: 0 12px 34px rgba(0, 0, 0, 0.2);
@@ -212,7 +212,6 @@ nav a.active {
 
 .work-showcase {
   display: grid;
-  grid-template-columns: minmax(14rem, 0.42fr) minmax(0, 1fr);
   gap: clamp(0.8rem, 2vw, 1.15rem);
   min-height: 0;
   padding: clamp(0.9rem, 2vw, 1.2rem);
@@ -711,7 +710,7 @@ footer {
   gap: 1rem;
   padding: 0.95rem clamp(1rem, 4vw, 3rem);
   color: #fff;
-  background: linear-gradient(90deg, #080c17, #10182c);
+  background: linear-gradient(90deg, #101a2b, #1b2940);
   border-top: 1px solid var(--line);
 }
 
@@ -756,7 +755,7 @@ footer a {
     top: calc(100% + 0.5rem);
     display: none;
     padding: 0.6rem;
-    background: rgba(8, 12, 23, 0.96);
+    background: rgba(20, 30, 47, 0.96);
     border: 1px solid var(--line);
     border-radius: 0.5rem;
     box-shadow: var(--shadow);
