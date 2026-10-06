@@ -13,8 +13,13 @@ export const site = {
   lifetimeMembership: "₹1,100",
   assets: {
     logo: "/assets/prayas-logo.jpeg",
-    overviewPoster: "/assets/prayas-overview-poster.jpeg",
-    workPlanPoster: "/assets/prayas-work-plan-poster.jpeg",
+    w1: "/assets/1.jpg",
+    w2: "/assets/2.jpg",
+    w3: "/assets/3.jpg",
+    w4: "/assets/4.jpg",
+    w5: "/assets/5.jpg",
+    w6: "/assets/6.jpg",
+    w7: "/assets/7.jpg"
   },
 };
 

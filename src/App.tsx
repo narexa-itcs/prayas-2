@@ -4,7 +4,7 @@ import { achievements, donationUses, futurePlans, site, stats } from "./siteCont
 type Page = "home" | "about" | "donate" | "contact";
 
 const pages: { key: Page; label: string }[] = [
-  { key: "home", label: "मुख्य पृष्ठ" },
+  { key: "home", label: "Home" },
   { key: "about", label: "About us" },
   { key: "donate", label: "Donate us" },
   { key: "contact", label: "Contact us" },
@@ -12,17 +12,39 @@ const pages: { key: Page; label: string }[] = [
 
 const slideImages = [
   {
-    src: site.assets.overviewPoster,
+    src: site.assets.w1,
     title: "अब तक हमारे प्रमुख कार्य",
   },
   {
-    src: site.assets.workPlanPoster,
-    title: "कार्य और आगे की योजनाएं",
+    src: site.assets.w1,
+    title: "अब तक हमारे प्रमुख कार्य",
   },
   {
-    src: site.assets.logo,
-    title: "प्रयास हमारा, सहयोग आपका",
+    src: site.assets.w2,
+    title: "अब तक हमारे प्रमुख कार्य",
   },
+
+  {
+    src: site.assets.w3,
+    title: "अब तक हमारे प्रमुख कार्य",
+  },
+  {
+    src: site.assets.w4,
+    title: "अब तक हमारे प्रमुख कार्य",
+  },
+  {
+    src: site.assets.w5,
+    title: "अब तक हमारे प्रमुख कार्य",
+  },
+  {
+    src: site.assets.w6,
+    title: "अब तक हमारे प्रमुख कार्य",
+  },
+   {
+    src: site.assets.w7,
+    title: "अब तक हमारे प्रमुख कार्य",
+  }
+  
 ];
 
 function getPageFromHash(): Page {
@@ -100,30 +122,7 @@ function Header({
 function HomePage() {
   return (
     <div className="page-shell">
-      <section className="hero-section" aria-labelledby="hero-title">
-        <div className="hero-copy">
-          <p className="eyebrow">{site.formerName}</p>
-          <h1 id="hero-title">{site.name}</h1>
-          <p>{site.mission}</p>
-          <div className="hero-actions">
-            <a className="primary-action" href="#donate">
-              आजीवन सदस्य बनें
-            </a>
-            <a className="secondary-action" href="#contact">
-              संपर्क करें
-            </a>
-          </div>
-        </div>
-        <div className="hero-stat-grid" aria-label="कार्य सारांश">
-          {stats.map((stat) => (
-            <div className="stat-tile" key={stat.label}>
-              <strong>{stat.value}</strong>
-              <span>{stat.label}</span>
-            </div>
-          ))}
-        </div>
-      </section>
-
+      
       <section className="landing-grid" aria-label="मुख्य जानकारी">
         <div className="feature-panel">
           <ImageSlideshow />
