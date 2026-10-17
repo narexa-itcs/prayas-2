@@ -241,7 +241,7 @@ function AboutPage() {
           <p>
             समाज के ऐसे लोगों तक सहायता पहुंचाना जिन्हें रक्त, भोजन, वस्त्र, शिक्षा, स्वास्थ्य या आर्थिक सहयोग की
             तत्काल आवश्यकता है। संस्था अपने सदस्यों और सहयोगियों की भागीदारी से सेवा कार्यों को सुचारू और पारदर्शी
-            रूप से आगे बढ़ाने के लिए प्रतिबद्ध है।
+            रूप से आगे बढ़ाने के लिए प्रतिबद्ध है।8
           </p>
         </div>
         <div className="image-strip">
@@ -266,32 +266,32 @@ function AboutPage() {
 
 function DonatePage() {
   return (
-    <div className="page-shell content-page">
-      <section className="donate-hero">
-        <div>
-          <p className="eyebrow">Donate us</p>
-          <h1>आपका सहयोग किसी जरूरतमंद के जीवन में नई आशा ला सकता है।</h1>
-          <p>
-            आजीवन सदस्यता शुल्क {site.lifetimeMembership} है। सहयोग राशि संस्था के बैंक खाते, UPI या QR कोड के
-            माध्यम से जमा की जा सकती है।
-          </p>
-          <div className="upi-box">
-            <span>UPI ID</span>
-            <strong>{site.upiId}</strong>
-            <small>{site.bank}</small>
-          </div>
-        </div>
-        <img src={site.assets.workPlanPoster} alt="सदस्यता और QR कोड विवरण" />
-      </section>
+    <div className="page-shell content-page donate-page">
+      <section className="donate-layout">
+        <div className="donate-copy">
+          <section className="page-heading">
+            <p className="eyebrow">Donate us</p>
+            <h2>आपका सहयोग किसी जरूरतमंद के जीवन में नई आशा ला सकता है।</h2>
+            <p>
+              आजीवन सदस्यता शुल्क {site.lifetimeMembership} है। सहयोग राशि संस्था के बैंक खाते, UPI या QR कोड के
+              माध्यम से जमा की जा सकती है।
+            </p>
+          </section>
 
-      <section className="work-section">
-        <p className="eyebrow">सहयोग का उपयोग</p>
-        <h2>दान और सदस्यता से सेवा कार्यों को मजबूती</h2>
-        <ul className="achievement-list compact">
-          {donationUses.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ul>
+          <section className="work-section">
+            <p className="eyebrow">सहयोग का उपयोग</p>
+            <h2>दान और सदस्यता से सेवा कार्यों को मजबूती</h2>
+            <ul className="achievement-list compact">
+              {donationUses.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </section>
+        </div>
+
+        <aside className="donate-hero" aria-label="Donate by QR code">
+          <img src={site.assets.QRcode} alt="सदस्यता और QR कोड विवरण" />
+        </aside>
       </section>
     </div>
   );
@@ -399,8 +399,8 @@ function ContactPage() {
             </div>
           )}
           <div>
-            <span>UPI</span>
-            <strong>{site.upiId}</strong>
+            <span>Contact</span>
+            <strong>{site.phoneNumbers}</strong>
           </div>
         </aside>
       </section>

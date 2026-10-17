@@ -8,6 +8,7 @@ export const site = {
   location: "बरेली, उत्तर प्रदेश",
   serviceArea: "जनपद बरेली एवं आस-पास के क्षेत्र",
   email: "",
+  phoneNumbers:"+91-70604 05401",
   upiId: "9536222865m@pnb",
   bank: "Punjab National Bank",
   lifetimeMembership: "₹1,100",
@@ -22,6 +23,7 @@ export const site = {
     w7: "/assets/7.jpg",
     overviewPoster: "/assets/prayas-overview-poster.jpeg",
     workPlanPoster: "/assets/prayas-work-plan-poster.jpeg",
+    QRcode: "/assets/prayas-qr-code.jpg",
   },
 };
 
