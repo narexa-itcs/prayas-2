@@ -1,5 +1,5 @@
 import { FormEvent, useEffect, useMemo, useState } from "react";
-import { achievements, donationUses, futurePlans, site } from "./siteContent";
+import { achievements, donationUses, futurePlans, site, stats } from "./siteContent";
 
 type Page = "home" | "about" | "donate" | "contact";
 type WorkHighlight = {
@@ -12,8 +12,8 @@ type WorkHighlight = {
 const pages: { key: Page; label: string }[] = [
   { key: "home", label: "Home" },
   { key: "about", label: "About us" },
-  { key: "donate", label: "Donate us" },
-  { key: "contact", label: "Contact us" },
+  { key: "contact", label: "Contact" },
+  { key: "donate", label: "Support our work" },
 ];
 
 const fallbackHighlights: WorkHighlight[] = [
@@ -60,7 +60,7 @@ function App() {
         {page === "donate" && <DonatePage />}
         {page === "contact" && <ContactPage />}
       </main>
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }
@@ -105,28 +105,49 @@ function Header({
 
 function HomePage() {
   return (
-    <div className="page-shell home-shell">
-      <section className="work-showcase" aria-labelledby="work-title">
+    <div className="home-page">
+      <section className="hero-section page-shell">
+        <div className="hero-copy">
+          <p className="eyebrow"><span className="eyebrow-mark" /> समाज सेवा • सहयोग • संवेदनशीलता</p>
+          <h1>सेवा का संकल्प,<br /><em>समाज के नाम।</em></h1>
+          <p className="hero-description">{site.mission}</p>
+          <div className="hero-actions">
+            <a className="primary-action" href="#donate">हमारे कार्यों में सहयोग करें <span aria-hidden="true">↗</span></a>
+            <a className="secondary-action" href="#about">हमारे बारे में जानें</a>
+          </div>
+          <div className="hero-note"><span className="note-icon" aria-hidden="true">✳</span><span><strong>वर्ष 2013 से</strong><small>बरेली और आसपास के क्षेत्रों में सेवा के लिए समर्पित</small></span></div>
+        </div>
+        <div className="hero-visual">
+          <div className="hero-photo-main"><img src={site.assets.w1} alt="प्रयास सहयोग सेवा समिति की सामाजिक सेवा गतिविधि" /></div>
+          <div className="hero-photo-small"><img src={site.assets.w5} alt="समुदाय के लिए सहायता गतिविधि" /></div>
+          <div className="hero-seal"><span>प्रयास</span><strong>सेवा ही<br />संकल्प</strong><small>स्थापना • 2013</small></div>
+          <div className="hero-visual-caption"><span className="caption-dot" /> वास्तविक प्रयास, वास्तविक बदलाव</div>
+        </div>
+      </section>
+      <section className="impact-section"><div className="page-shell">
+        <div className="section-intro"><p className="eyebrow">हमारे प्रयास, हमारा प्रभाव</p><h2>साथ मिलकर, बदलाव की ओर</h2></div>
+        <div className="hero-stat-grid">{stats.map((item, index) => <article className="stat-tile" key={item.label}><span className="stat-index">0{index + 1}</span><strong>{item.value}</strong><span>{item.label}</span></article>)}</div>
+      </div></section>
+      <section className="work-section page-shell">
+        <div className="section-heading"><div><p className="eyebrow">हम क्या करते हैं</p><h2>सेवा, जो लोगों तक पहुँचती है</h2></div><a className="text-link" href="#about">हमारी यात्रा <span aria-hidden="true">→</span></a></div>
+        <div className="landing-grid">
+          <article className="feature-panel"><div className="feature-image"><img src={site.assets.w2} alt="रक्तदान शिविर में भाग लेते स्वयंसेवक" loading="lazy" /></div><div className="feature-copy"><span className="feature-number">01 / स्वास्थ्य</span><h3>रक्तदान और स्वास्थ्य सहायता</h3><p>स्वैच्छिक रक्तदान शिविरों और स्वास्थ्य गतिविधियों के माध्यम से जरूरतमंद लोगों तक सहायता पहुँचाना।</p></div></article>
+          <article className="feature-panel"><div className="feature-image"><img src={site.assets.w5} alt="जरूरतमंद परिवारों के लिए वस्त्र सहायता" loading="lazy" /></div><div className="feature-copy"><span className="feature-number">02 / राहत</span><h3>भोजन, वस्त्र और राहत</h3><p>कठिन समय में परिवारों को भोजन, सर्दियों के वस्त्र और जरूरी सहयोग उपलब्ध कराने का प्रयास।</p></div></article>
+          <article className="feature-panel"><div className="feature-image"><img src={site.assets.w6} alt="समुदाय के साथ सामाजिक सेवा गतिविधि" loading="lazy" /></div><div className="feature-copy"><span className="feature-number">03 / समुदाय</span><h3>समुदाय के साथ, समुदाय के लिए</h3><p>सदस्यों और सहयोगियों की भागीदारी से स्थानीय जरूरतों पर आधारित सेवा कार्य।</p></div></article>
+        </div>
+      </section>
+      <section className="work-showcase page-shell" aria-labelledby="work-title">
+        <div className="section-heading"><div><p className="eyebrow">मैदान से झलकियाँ</p><h2 id="work-title">हमारे कार्यों की एक झलक</h2></div><span className="section-aside">काम की तस्वीरें, लोगों की कहानियाँ</span></div>
         <ImageSlideshow />
       </section>
-
-      <section className="future-work-section" aria-labelledby="future-title">
-        <div className="section-heading compact">
-          <p className="eyebrow">आगे की अन्य योजनाएं</p>
-        </div>
-        <div className="plan-list">
-          {futurePlans.map((plan) => (
-            <article className="plan-item" key={plan.title}>
-              <h3>{plan.title}</h3>
-              <p>{plan.text}</p>
-            </article>
-          ))}
-        </div>
-      </section>
+      <section className="future-work-section"><div className="page-shell future-inner">
+        <div className="future-intro"><p className="eyebrow">आगे की राह</p><h2>जहाँ जरूरत होगी,<br /><em>वहाँ प्रयास होगा।</em></h2><p>हमारी आगामी योजनाएँ स्थानीय जरूरतों को समझकर और सहयोगियों के साथ मिलकर आगे बढ़ने का संकल्प हैं।</p><a className="secondary-action" href="#contact">हमसे जुड़ें</a></div>
+        <div className="plan-list">{futurePlans.map((plan, index) => <article className="plan-item" key={plan.title}><span className="plan-number">0{index + 1}</span><div><h3>{plan.title}</h3><p>{plan.text}</p></div><span className="plan-arrow" aria-hidden="true">↗</span></article>)}</div>
+      </div></section>
+      <section className="closing-cta page-shell"><div><p className="eyebrow">आपका सहयोग मायने रखता है</p><h2>एक बेहतर समाज की शुरुआत,<br />एक छोटे से प्रयास से होती है।</h2></div><a className="primary-action" href="#donate">सहयोग करें <span aria-hidden="true">↗</span></a></section>
     </div>
   );
 }
-
 function ImageSlideshow() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [highlights, setHighlights] = useState<WorkHighlight[]>(fallbackHighlights);
@@ -172,8 +193,12 @@ function ImageSlideshow() {
   return (
     <div className="slideshow" aria-label="NGO work slideshow" aria-live="polite">
       <div className="slide-copy">
-        <h2>{activeSlide.title}</h2>
+        <span className="slide-kicker">सेवा कार्य {String(activeIndex + 1).padStart(2, "0")} / {String(highlights.length).padStart(2, "0")}</span>
+        <h3>{activeSlide.title}</h3>
         <p>{activeSlide.detail}</p>
+        <div className="slide-controls" aria-label="Slideshow controls">
+          {highlights.map((slide, index) => <button key={slide.id} className={activeIndex === index ? "active" : ""} type="button" onClick={() => setActiveIndex(index)} aria-label={`Show work record ${index + 1}: ${slide.title}`} />)}
+        </div>
       </div>
       <div className="slide-gallery">
         {activeSlide.images.slice(0, 4).map((image, index) => (
@@ -199,12 +224,13 @@ function ImageSlideshow() {
 
 function AboutPage() {
   return (
-    <div className="page-shell content-page about-page">
+    <div className="page-shell content-page">
       <section className="page-heading">
-        <h2 className="eyebrow">About us</h2>
-        <h1 className="page-lead">हमारा प्रयास, समाज के लिए</h1>
+        <p className="eyebrow">About us</p>
+        <h1>{site.name}</h1>
         <p>
-          संस्था वर्ष 2013 से जनपद बरेली और आसपास के क्षेत्रों में निःस्वार्थ भाव से सामाजिक सेवा कर रही है। जून 2026 तक यह प्रयास रेवो के नाम से कार्यरत थी और पंजीकरण के बाद जुलाई 2026 से प्रयास सहयोग सेवा
+          संस्था वर्ष 2013 से जनपद बरेली और आसपास के क्षेत्रों में निःस्वार्थ भाव से सामाजिक सेवा कर रही है।
+          जून 2026 तक यह प्रयास रेवो के नाम से कार्यरत थी और पंजीकरण के बाद जुलाई 2026 से प्रयास सहयोग सेवा
           समिति के नाम से वही सेवा कार्य जारी हैं।
         </p>
       </section>
@@ -217,6 +243,9 @@ function AboutPage() {
             तत्काल आवश्यकता है। संस्था अपने सदस्यों और सहयोगियों की भागीदारी से सेवा कार्यों को सुचारू और पारदर्शी
             रूप से आगे बढ़ाने के लिए प्रतिबद्ध है।
           </p>
+        </div>
+        <div className="image-strip">
+          <img src={site.assets.logo} alt="प्रयास सहयोग सेवा समिति लोगो" />
         </div>
       </section>
 
@@ -237,14 +266,22 @@ function AboutPage() {
 
 function DonatePage() {
   return (
-    <div className="page-shell content-page donate-page">
-      <section className="page-heading">
-        <h2 className="eyebrow">Donate us</h2>
-        <h1 className="page-lead">आपका सहयोग किसी जरूरतमंद के जीवन में नई आशा ला सकता है।</h1>
-        <p>
-          आजीवन सदस्यता शुल्क {site.lifetimeMembership} है। सहयोग राशि संस्था के बैंक खाते, UPI या QR कोड के
-          माध्यम से जमा की जा सकती है।
-        </p>
+    <div className="page-shell content-page">
+      <section className="donate-hero">
+        <div>
+          <p className="eyebrow">Donate us</p>
+          <h1>आपका सहयोग किसी जरूरतमंद के जीवन में नई आशा ला सकता है।</h1>
+          <p>
+            आजीवन सदस्यता शुल्क {site.lifetimeMembership} है। सहयोग राशि संस्था के बैंक खाते, UPI या QR कोड के
+            माध्यम से जमा की जा सकती है।
+          </p>
+          <div className="upi-box">
+            <span>UPI ID</span>
+            <strong>{site.upiId}</strong>
+            <small>{site.bank}</small>
+          </div>
+        </div>
+        <img src={site.assets.workPlanPoster} alt="सदस्यता और QR कोड विवरण" />
       </section>
 
       <section className="work-section">
@@ -288,14 +325,18 @@ function ContactPage() {
       [`Name: ${form.name}`, `Email: ${form.email}`, `Phone: ${form.phone}`, "", form.message].join("\n"),
     );
 
+    if (!site.email) {
+      setError("ईमेल संपर्क अभी कॉन्फ़िगर नहीं है। कृपया संस्था से सीधे संपर्क करें।");
+      return;
+    }
     window.location.href = `mailto:${site.email}?subject=${subject}&body=${body}`;
   }
 
   return (
-    <div className="page-shell content-page contact-page">
+    <div className="page-shell content-page">
       <section className="page-heading">
-        <h2 className="eyebrow">Contact us</h2>
-        <h1 className="page-lead">संपर्क करें</h1>
+        <p className="eyebrow">Contact us</p>
+        <h1>संपर्क करें</h1>
         <p>सदस्यता, सहयोग, शिविर या सेवा कार्यों से जुड़ी जानकारी के लिए नीचे दिया गया enquiry form भरें।</p>
       </section>
 
@@ -369,12 +410,14 @@ function ContactPage() {
 
 function Footer() {
   return (
-    <footer>
-      <div>
-        <strong>{site.name}</strong>
-        <span>{site.tagline}</span>
+    <footer className="site-footer">
+      <div className="footer-brand">
+        <img src={site.assets.logo} alt="" />
+        <span><strong>{site.name}</strong><small>{site.tagline}</small></span>
       </div>
-      <a href="#donate">सहयोग करें</a>
+      <p>निःस्वार्थ सेवा • पारदर्शिता • सामुदायिक सहयोग</p>
+      <a href="#donate">सहयोग करें <span aria-hidden="true">↗</span></a>
+      <small className="copyright">© {new Date().getFullYear()} {site.name}. सर्वाधिकार सुरक्षित।</small>
     </footer>
   );
 }
