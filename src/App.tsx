@@ -201,13 +201,12 @@ function AboutPage() {
   return (
     <div className="page-shell content-page">
       <section className="page-heading">
-        <p className="eyebrow">About us</p>
-        <h1>{site.name}</h1>
-        <p>
-          संस्था वर्ष 2013 से जनपद बरेली और आसपास के क्षेत्रों में निःस्वार्थ भाव से सामाजिक सेवा कर रही है।
-          जून 2026 तक यह प्रयास रेवो के नाम से कार्यरत थी और पंजीकरण के बाद जुलाई 2026 से प्रयास सहयोग सेवा
+        <h2 className="eyebrow">About us</h2>
+       
+        <h2>
+          संस्था वर्ष 2013 से जनपद बरेली और आसपास के क्षेत्रों में निःस्वार्थ भाव से सामाजिक सेवा कर रही है। जून 2026 तक यह प्रयास रेवो के नाम से कार्यरत थी और पंजीकरण के बाद जुलाई 2026 से प्रयास सहयोग सेवा
           समिति के नाम से वही सेवा कार्य जारी हैं।
-        </p>
+        </h2>
       </section>
 
       <section className="two-column">
@@ -219,13 +218,11 @@ function AboutPage() {
             रूप से आगे बढ़ाने के लिए प्रतिबद्ध है।
           </p>
         </div>
-        <div className="image-strip">
-          <img src={site.assets.logo} alt="प्रयास सहयोग सेवा समिति लोगो" />
-        </div>
       </section>
 
       <section className="timeline-section" aria-labelledby="timeline-title">
         <h2 id="timeline-title">प्रमुख उपलब्धियां</h2>
+        <br />
         <div className="timeline">
           {achievements.map((item, index) => (
             <article key={item}>
@@ -242,21 +239,14 @@ function AboutPage() {
 function DonatePage() {
   return (
     <div className="page-shell content-page">
-      <section className="donate-hero">
-        <div>
-          <p className="eyebrow">Donate us</p>
-          <h1>आपका सहयोग किसी जरूरतमंद के जीवन में नई आशा ला सकता है।</h1>
+       <section className="page-heading">
+        <h2 className="eyebrow">Donate us</h2>
+       
+       <h3>आपका सहयोग किसी जरूरतमंद के जीवन में नई आशा ला सकता है।</h3>
           <p>
             आजीवन सदस्यता शुल्क {site.lifetimeMembership} है। सहयोग राशि संस्था के बैंक खाते, UPI या QR कोड के
             माध्यम से जमा की जा सकती है।
           </p>
-          <div className="upi-box">
-            <span>UPI ID</span>
-            <strong>{site.upiId}</strong>
-            <small>{site.bank}</small>
-          </div>
-        </div>
-        <img src={site.assets.workPlanPoster} alt="सदस्यता और QR कोड विवरण" />
       </section>
 
       <section className="work-section">
@@ -305,11 +295,14 @@ function ContactPage() {
 
   return (
     <div className="page-shell content-page">
-      <section className="page-heading">
-        <p className="eyebrow">Contact us</p>
-        <h1>संपर्क करें</h1>
-        <p>सदस्यता, सहयोग, शिविर या सेवा कार्यों से जुड़ी जानकारी के लिए नीचे दिया गया enquiry form भरें।</p>
+       <section className="page-heading">
+        <h2 className="eyebrow">Contact us</h2>
+       
+       <h3>सदस्यता, सहयोग, शिविर या सेवा कार्यों से जुड़ी जानकारी के लिए नीचे दिया गया enquiry form भरें।</h3>
+        
       </section>
+
+    
 
       <section className="contact-layout">
         <form className="contact-form" onSubmit={handleSubmit}>
