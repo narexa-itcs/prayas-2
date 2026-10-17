@@ -199,14 +199,14 @@ function ImageSlideshow() {
 
 function AboutPage() {
   return (
-    <div className="page-shell content-page">
+    <div className="page-shell content-page about-page">
       <section className="page-heading">
         <h2 className="eyebrow">About us</h2>
-       
-        <h2>
+        <h1 className="page-lead">हमारा प्रयास, समाज के लिए</h1>
+        <p>
           संस्था वर्ष 2013 से जनपद बरेली और आसपास के क्षेत्रों में निःस्वार्थ भाव से सामाजिक सेवा कर रही है। जून 2026 तक यह प्रयास रेवो के नाम से कार्यरत थी और पंजीकरण के बाद जुलाई 2026 से प्रयास सहयोग सेवा
           समिति के नाम से वही सेवा कार्य जारी हैं।
-        </h2>
+        </p>
       </section>
 
       <section className="two-column">
@@ -222,7 +222,6 @@ function AboutPage() {
 
       <section className="timeline-section" aria-labelledby="timeline-title">
         <h2 id="timeline-title">प्रमुख उपलब्धियां</h2>
-        <br />
         <div className="timeline">
           {achievements.map((item, index) => (
             <article key={item}>
@@ -238,15 +237,14 @@ function AboutPage() {
 
 function DonatePage() {
   return (
-    <div className="page-shell content-page">
-       <section className="page-heading">
+    <div className="page-shell content-page donate-page">
+      <section className="page-heading">
         <h2 className="eyebrow">Donate us</h2>
-       
-       <h3>आपका सहयोग किसी जरूरतमंद के जीवन में नई आशा ला सकता है।</h3>
-          <p>
-            आजीवन सदस्यता शुल्क {site.lifetimeMembership} है। सहयोग राशि संस्था के बैंक खाते, UPI या QR कोड के
-            माध्यम से जमा की जा सकती है।
-          </p>
+        <h1 className="page-lead">आपका सहयोग किसी जरूरतमंद के जीवन में नई आशा ला सकता है।</h1>
+        <p>
+          आजीवन सदस्यता शुल्क {site.lifetimeMembership} है। सहयोग राशि संस्था के बैंक खाते, UPI या QR कोड के
+          माध्यम से जमा की जा सकती है।
+        </p>
       </section>
 
       <section className="work-section">
@@ -294,15 +292,12 @@ function ContactPage() {
   }
 
   return (
-    <div className="page-shell content-page">
-       <section className="page-heading">
+    <div className="page-shell content-page contact-page">
+      <section className="page-heading">
         <h2 className="eyebrow">Contact us</h2>
-       
-       <h3>सदस्यता, सहयोग, शिविर या सेवा कार्यों से जुड़ी जानकारी के लिए नीचे दिया गया enquiry form भरें।</h3>
-        
+        <h1 className="page-lead">संपर्क करें</h1>
+        <p>सदस्यता, सहयोग, शिविर या सेवा कार्यों से जुड़ी जानकारी के लिए नीचे दिया गया enquiry form भरें।</p>
       </section>
-
-    
 
       <section className="contact-layout">
         <form className="contact-form" onSubmit={handleSubmit}>
